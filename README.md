@@ -99,13 +99,8 @@ Logs:
 
 ## 3) Architecture diagram (deployment)
 
-```mermaid
-flowchart LR
-   U[Client Browser] -->|HTTP :80| N[Nginx Container]
-   N -->|/ (static files)| FE[React dist on Nginx]
-   N -->|/api/* proxy| B[Backend Container :5000]
-   B -->|MongoDB driver| M[(Mongo Container :27017)]
-```
+<img width="6006" height="753" alt="MongoDB Data Persistence-2026-02-27-094240" src="https://github.com/user-attachments/assets/c060acf2-2e79-4af6-8cfc-7c56e12508bf" />
+
 
 ### Architecture explanation
 
