@@ -1,0 +1,45 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - internal
+
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    environment:
+      NODE_ENV: "production"
+      PORT: "5000"
+      MONGO_URI: ${MONGO_URI:-mongodb://mongo:27017/hostelops}
+      JWT_SECRET: ${JWT_SECRET:-change_me_to_a_long_random_secret}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      ADMIN_NAME: ${ADMIN_NAME}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    depends_on:
+      - mongo
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mongo_data:
