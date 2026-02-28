@@ -16,7 +16,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/EventRegistration
+            cd ~/hostel-devops
             git pull origin main
             cd frontend
             npm install
@@ -24,3 +24,4 @@ jobs:
             cd ..
             docker-compose down
             docker-compose up -d --build
+
