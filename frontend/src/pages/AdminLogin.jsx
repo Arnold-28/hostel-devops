@@ -80,7 +80,7 @@ export default function AdminLogin() {
         </div>
 
         <div className="mt-4 text-xs text-gray-500">
-          Demo mode: Mighty Arnold
+          Demo mode: Mighty Arnold Arnold
         </div>
       </div>
     </div>
